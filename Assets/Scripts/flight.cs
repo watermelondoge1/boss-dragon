@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class flight : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 11f;
     private Rigidbody2D rb;
     Vector2 m_YAxis;
     public Rigidbody2D m_Rigidbody2D;
