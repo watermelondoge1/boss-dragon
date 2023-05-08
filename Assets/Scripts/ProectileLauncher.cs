@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileLauncher : MonoBehaviour
+public class ProectileLauncher : MonoBehaviour
 {
     public GameObject projectilePrefab;
+    public bool firing = false;
+
 public float projectileSpeed = 10f;
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -18,11 +20,14 @@ public float projectileSpeed = 10f;
 
     void LaunchProjectile()
 {
-    
+    if(firing == true) 
+    {
     GameObject projectile  = Instantiate(projectilePrefab  , transform.position, Quaternion.identity);
     Rigidbody2D projectileRigidbody = projectile.GetComponent<Rigidbody2D>();
     projectileRigidbody.AddForce(transform.right * projectileSpeed, ForceMode2D.Impulse);
-    projectileRigidbody.constraints = RigidbodyConstraints2D.FreezePositionY;
+    projectileRigidbody.constraints = RigidbodyConstraints2D.FreezePositionY; 
+    firing = false;
+    }
 }
 
     // Start is called before the first frame update
@@ -37,8 +42,8 @@ public float projectileSpeed = 10f;
         
 {
     if (Input.GetKeyDown(KeyCode.Space))
-    {
-        LaunchProjectile();
+    {  //Coroutine WaitForSeconds(3);
+        firing = true;
     }
 }
 
